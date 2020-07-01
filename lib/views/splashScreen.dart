@@ -11,6 +11,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 7.7),
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
@@ -32,17 +33,22 @@ class _SplashScreenState extends State<SplashScreen> {
                   fontSize: 50,
                   fontWeight: FontWeight.w700
                 ),
+                textAlign: TextAlign.center,
               ),
+              SizedBox(height: 12,),
               Center(
-                child: Text(
-                  'Find Alternatives to Replace Chinese Apps and Products',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Inter',
-                    fontSize: 23,
-                    fontWeight: FontWeight.w500
+                child: Padding(
+                  padding: const EdgeInsets.all(0.1),
+                  child: Text(
+                    'Find Alternatives to Replace Chinese Apps and Products',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Inter',
+                      fontSize: 23,
+                      fontWeight: FontWeight.w500
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               )
             ],
