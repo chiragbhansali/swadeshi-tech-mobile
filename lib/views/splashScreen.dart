@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -7,19 +8,25 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState() {
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+          return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 7.7),
-        alignment: Alignment.center,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+      padding: EdgeInsets.symmetric(horizontal: 7.7),
+      alignment: Alignment.center,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
           gradient: LinearGradient(colors: [Colors.orange, Colors.green],
-          begin: FractionalOffset.topCenter,
-            end: FractionalOffset.bottomCenter
+              begin: FractionalOffset.topCenter,
+              end: FractionalOffset.bottomCenter
           )
-        ),
+      ),
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
