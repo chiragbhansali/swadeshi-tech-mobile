@@ -90,7 +90,7 @@ class AppCard extends StatefulWidget {
   final bool indian;
   final String url;
   final String playURL;
-  AppCard(this.url, this.name, this.indian, this.playURL);
+  AppCard(this.name, this.indian, this.url, this.playURL);
   @override
   _AppCardState createState() => _AppCardState();
 }
@@ -123,7 +123,7 @@ class _AppCardState extends State<AppCard> {
                             borderRadius: BorderRadius.circular(10)
                           ),
                           height: 60,
-                          width: MediaQuery.of(context).size.width - 48,
+                          width: 70,
                           child: Center(
                             child: Text(
                                 'Download From Play Store',

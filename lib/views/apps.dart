@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swadeshittech/widgets/card.dart';
+import 'dart:convert';
 
 class AppScreen extends StatefulWidget {
   @override
@@ -7,18 +8,32 @@ class AppScreen extends StatefulWidget {
 }
 
 class _AppScreenState extends State<AppScreen> {
+  Future getJson()async{
+    var result = await DefaultAssetBundle.of(context).loadString('json_data/appDB.json');
+    var finalRes = json.decode(result);
+    return finalRes;
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24),
-        child: Center(
-            child: AppCard(
-                'https://www.swadeshitech.in/assets/icons/roposo.png',
-                'Roposo',
-                true,
-            'https://play.google.com/store/apps/details?id=com.appfluent.quiz')),
-      ),
-    );
+    return  SingleChildScrollView(
+              child: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (context, index){
+            return ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                Text('Hello'),
+                Text('Hello'),
+                Text('Hello'),
+                Text('Hello'),
+                Text('Hello'),
+                Text('Hello'),
+                Text('Hello'),
+              ],
+            );
+          },
+        ),
+      );
+    
   }
 }
