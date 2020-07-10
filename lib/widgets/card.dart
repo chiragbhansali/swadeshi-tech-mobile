@@ -18,57 +18,63 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     if (widget.indian == true) {
-      return Container(
-        margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-        //padding: EdgeInsets.symmetric(horizontal: 20),
-        child: ClipRRect(
-          child: Banner(
-            message: "INDIAN",
-            layoutDirection: TextDirection.ltr,
-            location: BannerLocation.topStart,
-            color: Colors.green,
-            child: Container(
-              height: 160,
-              width: 170,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: Colors.black54)),
-              child: AspectRatio(
-                aspectRatio: 1 / 2,
-                child: Container(
-                      margin: EdgeInsets.only(top: 6),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(height: 8),
-                            widget.format == 'png' ? CachedNetworkImage(
-                              height: 60,
-                              width: 90,
-                              errorWidget: (context, url, error) => Icon(Icons.error),
-                              placeholder: (context, url)
-                              => Container(
-                                height: 60,
-                                width: 60,
-                                child: Center(
-                                  child: CircularProgressIndicator(),
-                                ),
+      return GestureDetector(
+        onTap: () => print('${widget.url}   ${widget.format}'),
+        child: Container(
+          margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+          //padding: EdgeInsets.symmetric(horizontal: 20),
+          child: ClipRRect(
+            child: Banner(
+              message: "INDIAN",
+              layoutDirection: TextDirection.ltr,
+              location: BannerLocation.topStart,
+              color: Colors.green,
+              child: Container(
+                height: 160,
+                width: 170,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.black54)),
+                child: AspectRatio(
+                  aspectRatio: 1 / 2,
+                  child: Container(
+                        margin: EdgeInsets.only(top: 6),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              SizedBox(height: 8),
+                              widget.format == 'png' ? GestureDetector(
+                                onTap: () =>  print(widget.url),
+                                child: CachedNetworkImage(
+                                  height: 60,
+                                  width: 90,
+                                  errorWidget: (context, url, error) => Icon(Icons.error),
+                                  placeholder: (context, url)
+                                  => Container(
+                                    height: 60,
+                                    width: 60,
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  ),
+                                  imageUrl: widget.url,),
+                              ) :SvgPicture.network(widget.url, height: 60, width: 60, ),
+                              SizedBox(
+                                height: 20,
                               ),
-                              imageUrl: widget.url,) :SvgPicture.network(widget.url, height: 60, width: 60, ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              widget.name,
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  color:  Color(0xFF424949),
-                                  fontWeight: FontWeight.w700),
-                            )
-                          ],
-                      )),
+                              Text(
+                                widget.name,
+                                style: TextStyle(
+                                    fontSize: 24,
+                                    color:  Color(0xFF424949),
+                                    fontWeight: FontWeight.w700),
+                              )
+                            ],
+                        )),
+                  ),
                 ),
               ),
             ),

@@ -11,7 +11,7 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   Future getData() async {
-    var data = await http.get('https://www.swadeshitech.in/js/data/products.json');
+    var data = await http.get('https://swadeshitech.in/js/data/products.json');
     var quizData = json.decode(data.body);
     return quizData;
   }
@@ -62,8 +62,9 @@ class _ProductScreenState extends State<ProductScreen> {
                               var format = data['chineseProducts'][id][index2]['imageFormat'];
                               String name = data['chineseProducts'][id][index2]['name'];
                               String applogoid = name.toLowerCase();
-                              var url = 'https://www.swadeshitech.in/assets/icons/products' + '/' + applogoid.replaceAll(' ', '') +'.$format' ;
-                              return ChineseCardApps(url, format);
+                              //var url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Onida_Electronics.svg/330px-Onida_Electronics.svg.png';
+                              var url = 'https://swadeshitech.in/assets/icons/products' + '/' + applogoid.replaceAll(' ', '') +'.$format' ;
+                              return ChineseCardApps(url,format);
                             },
                           ),
                         ),
@@ -90,8 +91,11 @@ class _ProductScreenState extends State<ProductScreen> {
                               String name = appsObj['name'];
                               var appId = (name).toLowerCase();
                               var format = appsObj['imageFormat'];
-                              var imgURL = 'https://www.swadeshitech.in/assets/icons/products' + '/' + appId.replaceAll(' ', '') + '.$format';
+                              print(format);
+                              var imgURL = 'https://swadeshitech.in/assets/icons/products' + '/' + appId.replaceAll(' ', '') + '.$format';
                               print(name);
+                              print(imgURL);
+                              //var url = 'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Huawei_Standard_logo.svg/189px-Huawei_Standard_logo.svg.png';
                               //var android = appsObj['android'];
                               return  ProductCard(imgURL, name, indian, format);
                             },
