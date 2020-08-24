@@ -14,47 +14,53 @@ class _ChineseCardAppsState extends State<ChineseCardApps> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         print(widget.url);
       },
       child: Container(
         margin: EdgeInsets.all(3),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15)
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
         child: Stack(
-          fit: StackFit.loose,
+            fit: StackFit.loose,
             alignment: AlignmentDirectional.center,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(13),
-                  child: widget.format == 'png' ? CachedNetworkImage(
-                    height: 60,
-                    width: 60,
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                    placeholder: (context, url)
-                    => Container(
-                      height: 80,
-                      width: 80,
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                    imageUrl: widget.url,
-                  ) : Container(height: 60, width: 60,child: Center(child: SvgPicture.network(widget.url, alignment: Alignment.center,))),
-              ) ,
+                child: widget.format == 'png'
+                    ? CachedNetworkImage(
+                        height: 60,
+                        width: 60,
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        placeholder: (context, url) => Container(
+                          height: 80,
+                          width: 80,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                        imageUrl: widget.url,
+                      )
+                    : Container(
+                        height: 60,
+                        width: 60,
+                        child: Center(
+                            child: SvgPicture.network(
+                          widget.url,
+                          alignment: Alignment.center,
+                        ))),
+              ),
               Opacity(
                 opacity: 0.60,
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(15),
                     color: Colors.white,
                   ),
                   height: 61,
                   width: 61,
                 ),
               )
-   ]),
+            ]),
       ),
     );
   }

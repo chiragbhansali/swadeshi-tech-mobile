@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "243713694244",
+    "firebase_url": "https://swadeshi-tech.firebaseio.com",
+    "project_id": "swadeshi-tech",
+    "storage_bucket": "swadeshi-tech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243713694244:android:d77731c717e0628984d6b1",
+        "android_client_info": {
+          "package_name": "com.swadeshitech.swadeshitech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243713694244-q2iofepidmi9on8km888vpepcgm2oa63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtRz75gEx8huNZxHLpPSQzPDNZYHe5RFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243713694244-q2iofepidmi9on8km888vpepcgm2oa63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
