@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:swadeshittech/views/apps.dart';
 import 'package:swadeshittech/views/products.dart';
 import 'package:firebase_analytics/observer.dart';
@@ -40,13 +39,13 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.white,
           brightness: Brightness.dark,
           centerTitle: true,
-          title: Image.asset('assets/SwadeshiTech.png', height: 70, width: 70,),
+          title: Image.asset('assets/SwadeshiTech.png', height: 50, width: 50,),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.share, size: 28),
+              icon: Icon(Icons.share, size: 24,),
               onPressed: () {
                 String message =
-                    "Let's all come together and use https://play.google.com/store/apps/details?id=com.swadeshitech.swadeshitech to find alternatives to replace Chinese apps and products. Let this message reach maximum of your family and friends to be part of our very own Swadeshi revolution!";
+                    "Let's all come together and use https://play.google.com/store/apps/details?id=com.swadeshitech.app to find alternatives to replace Chinese apps and products. Let this message reach maximum of your family and friends to be part of our very own Swadeshi revolution!";
                 share(context, message);
               },
             )
@@ -69,8 +68,8 @@ class _HomeState extends State<Home> {
             boxShadow: [
               BoxShadow(
                 offset: Offset(2, -2),
-                blurRadius: 6,
-                color: Color.fromRGBO(0, 0, 0, 0.5)
+                blurRadius: 4,
+                color: Color.fromRGBO(0, 0, 0, 0.1)
               )
             ]
           ),
@@ -100,7 +99,7 @@ class _HomeState extends State<Home> {
                   backgroundColor: Colors.white,
                   icon: Icon(Icons.shopping_cart, size: 32),
                   title: Text(
-                    "Shop",
+                    "Store",
                     style: TextStyle(fontSize: 16),
                   ))
             ],

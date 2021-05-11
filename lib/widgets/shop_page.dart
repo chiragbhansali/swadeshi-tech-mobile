@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:swadeshittech/widgets/shop_card.dart';
 import 'dart:math';
+import 'package:swadeshittech/globals.dart' as globals;
 
 class ShopWidget extends StatefulWidget {
+  final Map data;
+  ShopWidget(this.data);
   @override
   _ShopWidgetState createState() => _ShopWidgetState();
 }
@@ -10,19 +13,19 @@ class ShopWidget extends StatefulWidget {
 class _ShopWidgetState extends State<ShopWidget> {
   List categs;
   Map selectedCateg;
+  List brands;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    categs = [
-      {"name": "Laptops", "iconName": "58142"},
-      {"name": "Phones", "iconName": "58149"},
-      {"name": "ACs", "iconName": "0xe1a4"},
-      {"name": "CCTVs", "iconName": "58142"},
-      {"name": "Washing Machines", "iconName": "58142"}
-    ];
-    selectedCateg = categs[0];
+    print(widget.data);
+    categs = widget.data["categs"];
+    selectedCateg = globals.shopSelectCateg["data"] == ""
+        ? categs[0]
+        : globals.shopSelectCateg["data"];
+    brands = widget.data[selectedCateg["code"]].keys.toList();
+    print(brands);
   }
 
   @override
@@ -31,14 +34,16 @@ class _ShopWidgetState extends State<ShopWidget> {
         child: Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 20, left: 10),
+          padding: const EdgeInsets.only(top: 20, left: 14),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Expanded(
-                child: Text(
-                  selectedCateg["name"],
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              Container(
+                child: Expanded(
+                  child: Text(
+                    '${selectedCateg["name"]}',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
               SizedBox(
@@ -82,6 +87,12 @@ class _ShopWidgetState extends State<ShopWidget> {
                                         onPressed: () {
                                           setState(() {
                                             selectedCateg = categs[index];
+                                            globals.shopSelectCateg["data"] =
+                                                categs[index];
+                                            brands = widget
+                                                .data[selectedCateg["code"]]
+                                                .keys
+                                                .toList();
                                           });
                                           Future.delayed(
                                               Duration(milliseconds: 400), () {
@@ -96,7 +107,7 @@ class _ShopWidgetState extends State<ShopWidget> {
                                               Icon(
                                                 IconData(
                                                     int.parse(categs[index]
-                                                        ["iconName"]),
+                                                        ["iconCode"]),
                                                     fontFamily:
                                                         'MaterialIcons'),
                                                 color: Color(0xff808080),
@@ -161,14 +172,19 @@ class _ShopWidgetState extends State<ShopWidget> {
         ),
         Expanded(
           child: ListView.builder(
-              itemCount: 50,
+              itemCount: brands.length,
               itemBuilder: (context, index) {
                 return ListView.builder(
-                  itemCount: 3,
+                  itemCount:
+                      widget.data[selectedCateg["code"]][brands[index]].length,
                   shrinkWrap: true,
                   physics: ClampingScrollPhysics(),
                   itemBuilder: (context, index2) {
-                    return ShopCard((Random().nextInt(1000)).toString());
+                    return ShopCard(
+                        (widget.data[selectedCateg["code"]][brands[index]]
+                            [index2]["Name"]),
+                        widget.data[selectedCateg["code"]][brands[index]]
+                            [index2]);
                   },
                 );
               }),

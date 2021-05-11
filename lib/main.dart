@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          primarySwatch: Colors.orange),
+          primarySwatch: Colors.orange,
+          ),
       navigatorObservers: <NavigatorObserver>[observer],
       home: SplashScreen(analytics, observer),
     );

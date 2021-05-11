@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:swadeshittech/views/shop_info.dart';
 
 class ShopCard extends StatefulWidget {
   final String id;
-  ShopCard(this.id);
+  final Map data;
+  ShopCard(this.id, this.data);
   @override
   _ShopCardState createState() => _ShopCardState();
 }
@@ -14,11 +16,14 @@ class _ShopCardState extends State<ShopCard> {
     return MaterialButton(
       onPressed: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ShopInfo(widget.id)));
+            context,
+            PageRouteBuilder(
+                transitionDuration: Duration(milliseconds: 300),
+                pageBuilder: (_, __, ___) => ShopInfo(widget.id, widget.data)));
       },
       child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 110,
+          height: 165,
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
               border: Border(
@@ -26,18 +31,31 @@ class _ShopCardState extends State<ShopCard> {
           child: Row(
             children: <Widget>[
               SizedBox(
-                width: MediaQuery.of(context).size.width / 27,
+                width: MediaQuery.of(context).size.width / 34
               ),
               Hero(
                 tag: '${widget.id}',
-                child: Image.network(
-                  'https://rukminim1.flixcart.com/image/416/416/k7xnukw0/computer/n/m/e/apple-na-laptop-original-imafq2efm5gyrnug.jpeg?',
-                  height: 200,
-                  width: MediaQuery.of(context).size.width / 3.6,
+                child: Container(
+                  height: 130,
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: CachedNetworkImage(
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    placeholder: (context, url) => Container(
+                      height: 200,
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    imageUrl:
+                        'https://swadeshitech.in/assets/img/products/${widget.data["image"]}',
+                        height: 150,
+                    width: MediaQuery.of(context).size.width / 3.6,
+                  ),
                 ),
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width / 8,
+                width: MediaQuery.of(context).size.width / 14,
               ),
               Expanded(
                 child: Column(
@@ -45,25 +63,26 @@ class _ShopCardState extends State<ShopCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Macbook Air Pro',
+                      widget.data["Name"],
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
                       style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                          TextStyle(fontSize: 21, fontWeight: FontWeight.w700),
                     ),
                     SizedBox(
                       height: 8,
                     ),
                     Text(
-                      'Rs. 1,100,100',
+                      'Rs. ${widget.data["MRP"]}',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: Color(0xff515151)),
                     )
                   ],
                 ),
-              )
+              ),
             ],
           )),
     );

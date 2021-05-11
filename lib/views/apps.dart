@@ -70,23 +70,7 @@ class _AppScreenState extends State<AppScreen> {
                       ]),
                     ),
                     SliverToBoxAdapter(
-                      child: Container(
-                        height: 80,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: data['chineseApps'][id].length,
-                          itemBuilder: (context, index2) {
-                            String name = data['chineseApps'][id][index2];
-                            String applogoid = name.toLowerCase();
-                            var url =
-                                'https://www.swadeshitech.in/assets/icons' +
-                                    '/' +
-                                    applogoid.replaceAll(' ', '') +
-                                    '.png';
-                            return ChineseCardApps(url, 'png');
-                          },
-                        ),
-                      ),
+                      
                     ),
                     SliverGrid(
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
